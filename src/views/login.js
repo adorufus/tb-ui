@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setCurrentUser } from "../utils/utils";
+import "../assets/css/login.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -11,79 +12,79 @@ export default function Login() {
     try {
       const response = await fetch("http://localhost:8000/api/auth/login", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           user_name: username,
           user_password: password,
         }),
       });
 
-      // console.log(await response.json());
+      console.log(await response.json());
 
-      const data = await response.json()
-      console.log(data)
+      const data = await response.json();
+      console.log(data);
 
-      setCurrentUser(data)
+      setCurrentUser(data);
     } catch (e) {
       console.log(e);
     }
   }
 
   return (
-    <section className="vh-100" style={{ backgroundColor: "#f57b4b" }}>
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-            <div
-              className="card shadow-2-strong"
-              style={{ borderRadius: "1rem" }}
-            >
-              <div className="card-body p-5 text-center">
-                <h3 className="mb-5">Sign in</h3>
-                <div className="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="typeEmailX-2"
-                    className="form-control form-control-lg"
-                    onChange={(e) => {
-                      setUsername(e.target.value);
-                    }}
-                  />
-                  <label className="form-label" htmlFor="typeEmailX-2">
-                    Username
-                  </label>
-                </div>
-                <div className="form-outline mb-4">
-                  <input
-                    type="password"
-                    id="typePasswordX-2"
-                    className="form-control form-control-lg"
-                    onChange={(e) => {
-                      setPassword(e.target.value);
-                    }}
-                  />
-                  <label className="form-label" htmlFor="typePasswordX-2">
-                    Password
-                  </label>
-                </div>
-                <button
-                  className="btn btn-primary btn-lg"
-                  style={{ background: "#e4460c" }}
-                  onClick={() => {
-                    doLogin().then(() => {
-                      navigate('/')
-                    });
-                  }}
-                >
-                  Login
-                </button>
-                Or
-                <button className="btn btn-primary btn-lg" type="submit">
-                  Register
-                </button>
-              </div>
+    <section
+      className="login-form vh-100 w-100"
+      style={{ backgroundColor: "#252525" }}
+    >
+      <div className="wrapper h-100">
+        <div className="login-form">
+          <form>
+            <h2 className="text-center">User Login</h2>
+            <div className="form-group">
+              <input
+                type="text"
+                className="form-control"
+                name="username"
+                placeholder="Username"
+                required="required"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
             </div>
-          </div>
+            <div className="form-group">
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+                required="required"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+            <div className="form-group">
+              <button
+                type="submit"
+                className="btn btn-primary btn-lg btn-block"
+                onClick={() => {
+                  doLogin().then(() => {
+                    navigate("/");
+                  });
+                }}
+              >
+                Login
+              </button>
+            </div>
+            <div className="clearfix">
+              <p className="text-center small">
+                <span className="">Don't have an account?</span>{" "}
+                <a href="#" className="text-primary">
+                  Sign up here!
+                </a>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
