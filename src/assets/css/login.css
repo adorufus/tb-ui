@@ -16,7 +16,7 @@
   margin: 0 auto;
   padding: 100px 0 30px;
 }
-.login-form form {
+.login-form .form {
   color: #7a7a7a;
   border-radius: 2px;
   margin-bottom: 15px;

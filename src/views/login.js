@@ -37,7 +37,7 @@ export default function Login() {
     >
       <div className="wrapper h-100">
         <div className="login-form">
-          <form>
+          <div className="form">
             <h2 className="text-center">User Login</h2>
             <div className="form-group">
               <input
@@ -84,7 +84,7 @@ export default function Login() {
                 </a>
               </p>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </section>
